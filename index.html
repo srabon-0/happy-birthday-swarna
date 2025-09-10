@@ -141,9 +141,28 @@
   <div id="blast-text">BLAST!</div>
 </div>
 
-<audio id="bgm" src="/asset/music.mp3" loop></audio>
+<!-- Use relative path for GitHub Pages -->
+<audio id="bgm" src="asset/music.mp3" loop></audio>
 
 <script>
+  const balloon = document.getElementById('balloon');
+  const blastText = document.getElementById('blast-text');
+  const bgm = document.getElementById('bgm');
+
+  document.getElementById('balloon-container').addEventListener('click', () => {
+    // Balloon fade & shrink
+    balloon.style.transform = 'scale(0)';
+    balloon.style.opacity = '0';
+
+    // Show BLAST text with animation
+    blastText.style.display = 'block';
+    blastText.style.animation = 'blast 1s forwards';
+
+    // Play music (user interaction triggered, so allowed by browser)
+    bgm.play().catch(() => { console.log("Autoplay blocked"); });
+  });
+</script>
+
   const balloon = document.getElementById('balloon');
   const blastText = document.getElementById('blast-text');
   const bgm = document.getElementById('bgm');
@@ -310,3 +329,4 @@ modal.addEventListener('click',e=>{ if(e.target===modal) modal.classList.remove(
 </script>
 </body>
 </html>
+
